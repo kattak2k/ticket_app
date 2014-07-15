@@ -11,7 +11,7 @@ class CreateProjectsTest < ActionDispatch::IntegrationTest
     assert_equal 201, response.status
     assert_equal Mime::JSON, response.content_type
 
-    project = json(response.body)
+    project = json(response.body)[:project]
     assert_equal project_url(project[:id]), response.location
     assert_equal 'Test Project', project[:name]
   end
