@@ -9,6 +9,12 @@ class Api::ProjectsController < Api::BaseController
     respond_with :api, project
   end
 
+  def update
+    project = Project.find(params[:id])
+    project.update(project_params)
+    respond_with :api, project
+  end
+
   def destroy
     project = Project.find(params[:id])
     respond_with project.destroy
