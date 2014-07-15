@@ -4,6 +4,11 @@ class Api::CommentsController < Api::BaseController
     respond_with :api, comment
   end
 
+  def destroy
+    comment = Comment.find(params[:id])
+    respond_with comment.destroy
+  end
+
   def comment_params
     params.require(:comment).permit(:ticket_id, :content)
   end
