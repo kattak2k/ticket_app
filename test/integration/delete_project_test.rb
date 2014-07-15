@@ -6,7 +6,7 @@ class DeleteProjectTest < ActionDispatch::IntegrationTest
   end
 
   test 'delete project' do
-    delete "/projects/#{@project.id}"
+    delete "/api/projects/#{@project.id}"
     assert_equal 204, response.status
   end
 end
