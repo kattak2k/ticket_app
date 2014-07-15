@@ -6,7 +6,7 @@ class DeleteTicketTest < ActionDispatch::IntegrationTest
     @ticket = project.tickets.create(subject: 'Test Issue', description: 'This is a test.')
   end
 
-  test 'delete project' do
+  test 'delete ticket' do
     delete "/api/tickets/#{@ticket.id}"
     assert_equal 204, response.status
   end

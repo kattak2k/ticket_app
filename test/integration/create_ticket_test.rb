@@ -22,7 +22,8 @@ class CreateTicketTest < ActionDispatch::IntegrationTest
     assert_equal Mime::JSON, response.content_type
 
     ticket = json(response.body)[:ticket]
-    assert_equal api_project_ticket_url(ticket[:project_id], ticket[:id]), response.location
+    assert_equal api_ticket_url(ticket[:id]), response.location
+    assert_equal @project.id, ticket[:project_id]
     assert_equal 'Test Issue', ticket[:subject]
   end
 

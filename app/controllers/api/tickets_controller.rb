@@ -5,9 +5,8 @@ class Api::TicketsController < Api::BaseController
   end
 
   def create
-    project = Project.find(params[:project_id])
     ticket = Ticket.create(ticket_params)
-    respond_with :api, project, ticket
+    respond_with :api, ticket
   end
 
   def destroy

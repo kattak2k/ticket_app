@@ -6,7 +6,7 @@ class ListingTicketsTest < ActionDispatch::IntegrationTest
     @project.tickets.create!(subject: 'Test Issue', description: 'This is a test.', priority: 'low', status: 'open')
   end
 
-  test 'listing_project_tickets' do
+  test 'listing_tickets' do
     get "/api/projects/#{@project.id}/tickets"
 
     assert_equal 200, response.status
