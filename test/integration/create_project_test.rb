@@ -20,7 +20,7 @@ class CreateProjectsTest < ActionDispatch::IntegrationTest
     assert_equal 'Project One', project[:name]
   end
 
-  test 'do not create project with invalid data' do
+  test 'does not create project with invalid data' do
     post '/api/projects', {
       project: {
         name: nil
