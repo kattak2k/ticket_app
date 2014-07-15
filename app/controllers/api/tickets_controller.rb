@@ -10,6 +10,11 @@ class Api::TicketsController < Api::BaseController
     respond_with :api, project, ticket
   end
 
+  def destroy
+    @ticket = Ticket.find(params[:id])
+    respond_with @ticket.destroy
+  end
+
   def ticket_params
     params.require(:ticket).permit(:project_id, :subject, :description, :priority, :status)
   end
