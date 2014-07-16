@@ -4,6 +4,12 @@ class Api::CommentsController < Api::BaseController
     respond_with :api, comment
   end
 
+  def update
+     comment = Comment.find(params[:id])
+     comment.update(comment_params)
+     respond_with comment
+  end
+
   def destroy
     comment = Comment.find(params[:id])
     respond_with comment.destroy

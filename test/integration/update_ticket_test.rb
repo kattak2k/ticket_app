@@ -3,7 +3,7 @@ require 'test_helper'
 class UpdateTicketTest < ActionDispatch::IntegrationTest
   setup do
     project = Project.create!(name: 'Project One')
-    @ticket = project.tickets.create(subject: 'Test Issue', description: 'This is a test.')
+    @ticket = project.tickets.create!(subject: 'Test Issue', description: 'This is a test.')
   end
 
   test 'update ticket' do

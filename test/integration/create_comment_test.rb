@@ -3,7 +3,7 @@ require 'test_helper'
 class CreateCommentTest < ActionDispatch::IntegrationTest
   setup do
     project = Project.create!(name: 'Project One')
-    @ticket = project.tickets.create(subject: 'Test Issue', description: 'This is a test.')
+    @ticket = project.tickets.create!(subject: 'Test Issue', description: 'This is a test.')
   end
 
   test 'create ticket with valid data' do
