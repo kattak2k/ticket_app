@@ -9,6 +9,12 @@ class Api::TicketsController < Api::BaseController
     respond_with :api, ticket
   end
 
+  def update
+    ticket = Ticket.find(params[:id])
+    ticket.update(ticket_params)
+    respond_with ticket
+  end
+
   def destroy
     @ticket = Ticket.find(params[:id])
     respond_with @ticket.destroy
