@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140715222551) do
+ActiveRecord::Schema.define(version: 20140716015605) do
 
   create_table "comments", force: true do |t|
     t.integer  "ticket_id"
@@ -30,8 +30,8 @@ ActiveRecord::Schema.define(version: 20140715222551) do
     t.integer  "project_id"
     t.string   "subject"
     t.text     "description"
-    t.string   "priority",    default: "low",  null: false
-    t.string   "status",      default: "open", null: false
+    t.integer  "priority",    limit: 255, default: 0, null: false
+    t.integer  "status",      limit: 255, default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
