@@ -1,0 +1,296 @@
+<script type="text/x-handlebars" data-template-name="application">
+  <div class="container">
+    <h1>TicketApp</h1>
+    {{outlet}}
+    {{outlet modal}}
+    <hr/>
+</script>
+
+<script type="text/x-handlebars" data-template-name="projects">
+  <ol class='breadcrumb'>
+    <li class='active'>Projects</li>
+  </ol>
+
+  <legend>Projects</legend>
+  <p>
+    <form class="form-inline" role="form">
+      <div class="form-group">
+        {{input type="text" id="new-project" class="form-control" placeholder="Project Name" value=newProject}}
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary btn-sm" {{action 'createProject'}}><i class="glyphicon glyphicon-plus-sign"></i> Add Project</button>
+      </div>
+    </form>
+    {{outlet errors}}
+  </p>
+
+  <div class='row'>
+    <div class='col-sm-12'>
+      <table class='table table-striped'>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th></th>
+        </tr>
+        {{#each}}
+        <tr>
+          <td>{{id}}</td>
+          <td>{{#link-to 'project' this}}{{name}}{{/link-to}}</td>
+          <td>
+            <div class="btn-toolbar pull-right">
+              <div class="btn-group">
+                <button class="btn btn-default btn-sm" {{action "openModal" "modal" model}}><i class="glyphicon glyphicon-edit"></i></button>
+                <button class="btn btn-default btn-sm" {{action "deleteProject"}}><i class="glyphicon glyphicon-trash"></i></button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        {{else}}
+          <tr><td colspan="3">There are no projects.</td></tr>
+        {{/each}}
+      </table>
+    </div>
+  </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="project/index">
+  <ol class='breadcrumb'>
+    <li>{{#link-to 'projects'}}Projects{{/link-to}}</li>
+    <li class='active'>{{name}}</li>
+  </ol>
+  <legend>Tickets </legend>
+  <p>{{#link-to 'project.new_ticket' this class='btn btn-primary btn-sm'}}<i class="glyphicon glyphicon-plus-sign"></i> New Ticket{{/link-to}}</p>
+  {{render 'tickets' tickets}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="tickets">
+  <table class='table table-striped'>
+    <tr>
+      <th>#</th>
+      <th>Subject</th>
+      <th>Priority</th>
+      <th>Status</th>
+      <th>Created</th>
+      <th></th>
+    </tr>
+    {{#each}}
+      <tr>
+        <td>{{id}}</td>
+        <td>{{#link-to 'ticket' this}}{{subject}}{{/link-to}}</td>
+        <td>{{ticket-priority ticket=this}}</td>
+        <td>{{ticket-status ticket=this}}</td>
+        <td>{{datetime created_at}}</td>
+        <td>
+          <div class="btn-toolbar pull-right">
+            <div class="btn-group">
+              {{#link-to 'ticket.edit' this class='btn btn-default btn-sm'}} <i class="glyphicon glyphicon-edit"></i>{{/link-to}}
+              <button class="btn btn-default btn-sm" {{action "deleteTicket"}}><i class="glyphicon glyphicon-trash"></i></button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    {{else}}
+      <tr><td colspan="5">There are no tickets.</td></tr>
+    {{/each}}
+  </table>
+</script>
+
+<script type="text/x-handlebars" id="components/ticket-priority">
+    {{ticket.priorityDescription}}
+</script>
+
+<script type="text/x-handlebars" id="components/ticket-status">
+    {{ticket.statusDescription}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="ticket/index">
+  <ol class='breadcrumb'>
+    <li>{{#link-to 'projects'}}Projects{{/link-to}}</li>
+    <li>{{#link-to 'project' this.project}}{{this.project.name}}{{/link-to}}</li>
+    <li class='active'>{{subject}}</li>
+  </ol>
+
+  <legend>Ticket #{{id}}: {{subject}}</legend>
+  <div class="ticket-heading">
+    <div class="pull-left">
+      <ul class="list-inline">
+        <li><strong>Priority:</strong> {{ticket-priority ticket=this}}</li>
+        <li><strong>Status:</strong> {{ticket-status ticket=this}}</li>
+      </ul>
+    </div>
+    <div class="pull-right">
+      <p>
+        {{#link-to 'ticket.edit' this class='btn btn-default btn-xs'}}<i class="glyphicon glyphicon-edit"></i> Edit{{/link-to}}
+        <button class="btn btn-default btn-xs" {{action "deleteTicket"}}><i class="glyphicon glyphicon-trash"></i> Delete</button>
+      </p>
+    </div>
+  </div>
+  <p><strong>Description:</strong></p>
+  <p>{{description}}</p>
+  <legend class="subheading">Comments <span class="badge pull-right">{{comments.length}}</span></legend>
+  {{partial 'comment'}}
+  {{render 'comments' comments}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="comments">
+  <div class="comments">
+    {{#each}}
+      <div class="comment">
+        <blockquote>
+          <div class="comment-heading">
+            <span class="text-muted"><sup>{{datetime create_at}}</sup></span>
+            <div class="pull-right">
+              <button class="btn btn-default btn-xs" {{action "deleteComment"}}><i class="glyphicon glyphicon-trash"></i></button>
+            </div>
+          </div>
+          {{body}}
+          <footer>
+            {{name}}
+          </footer>
+        </blockquote>
+      </div>
+    {{else}}
+      <p>There are no comments.</p>
+    {{/each}}
+  </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="_comment">
+  <div class="well">
+    <form role="form">
+      <div class="form-group">
+        <label for="comment_name">Your Name</label>
+        {{input class="form-control" id="comment_name" placeholder="Name" valueBinding="comment.name"}}
+        {{#each comment.errors.name}}
+          <div class="text-danger">
+            {{message}}
+          </div>
+        {{/each}}
+      </div>
+      <div class="form-group">
+        <label for="comment_content">Comment</label>
+        {{textarea valueBinding="comment.body" class="form-control" id="comment_content" placeholder="Comment"}}
+        {{#each comment.errors.body}}
+          <div class="text-danger">
+            {{message}}
+          </div>
+        {{/each}}
+      </div>
+      <div>
+        <button type="submit" class="btn btn-default btn-sm" {{action 'saveComment'}}>Submit</button>
+      </div>
+    </form>
+  </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="project/new_ticket">
+  <ol class='breadcrumb'>
+    <li>{{#link-to 'projects'}}Projects{{/link-to}}</li>
+    <li>{{#link-to 'project' project}}{{project.name}}{{/link-to}}</li>
+    <li class='active'>New Ticket</li>
+  </ol>
+  <legend>New Ticket</legend>
+  {{partial "ticket"}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="ticket/edit">
+  <ol class='breadcrumb'>
+    <li>{{#link-to 'projects'}}Projects{{/link-to}}</li>
+    <li>{{#link-to 'project' project}}{{project.name}}{{/link-to}}</li>
+    <li class='active'>Edit Ticket</li>
+  </ol>
+  <legend>Edit Ticket #{{id}}</legend>
+  {{partial "ticket"}}
+</script>
+
+<script type="text/x-handlebars" data-template-name="_ticket">
+  <div class='row'>
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <label for="ticket_subject" class="col-sm-2 control-label">Subject</label>
+        <div class="col-sm-9">
+          {{input class="form-control" id="ticket_subject" placeholder="Subject" valueBinding="subject"}}
+          {{#each errors.subject}}
+            <div class="text-danger">
+              {{message}}
+            </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ticket_description" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-9">
+          {{textarea valueBinding="description" class="form-control" id="ticket_description" placeholder="Description"}}
+          {{#each errors.description}}
+            <div class="text-danger">
+              {{message}}
+            </div>
+          {{/each}}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="book_rating" class="col-sm-2 control-label">Priority</label>
+        <div class="col-sm-9">
+          {{view Ember.Select content=priorities optionValuePath="content.id" optionLabelPath="content.label" valueBinding='priority' class="form-control" id="ticket_priority"}}
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="book_genre" class="col-sm-2 control-label">Status</label>
+        <div class="col-sm-9">
+          {{view Ember.Select content=statuses optionValuePath="content.id" optionLabelPath="content.label" valueBinding="status" class="form-control" id="ticket_status"}}
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-primary" {{action 'saveTicket'}}>Save Ticket</button>
+          {{#link-to "project" project class="btn btn-default"}}Cancel{{/link-to}}
+        </div>
+      </div>
+    </form>
+  </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="modal">
+  {{#modal-dialog action="close"}}
+  	<header>
+		  <h4>Edit Project</h4>
+	  </header>
+    <section>
+      <div class="form-inline">
+        <div class="form-group">
+          <label for="project-name">Name</label>
+          {{input id="project-name" class="form-control" required="true" placeholder="Name" value=buffer.name action="save"}}
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="pull-left">
+        {{#each error in errors.name}}
+          <p class="text-danger">Name {{error.message}}</p>
+        {{/each}}
+      </div>
+      <div class="pull-right">
+        <button class="btn btn-primary" {{action "save"}}>Save</button>
+        <button class="btn btn-default" {{action "close"}}>Cancel</button>
+      </div>
+    </footer>
+  {{/modal-dialog}}
+</script>
+
+<script type="text/x-handlebars" id="components/modal-dialog">
+  <div class="overlay" {{action "close"}}>
+  </div>
+  <div id="modal">
+    {{yield}}
+  </div>
+</script>
+
+<script type="text/x-handlebars" data-template-name="errors">
+  <p>
+    <div class="alert alert-danger" role="alert">
+      {{#each error in errors.name}}
+        <span>Name {{error}}</span>
+      {{/each}}
+    </div>
+  </p>
+</script>
