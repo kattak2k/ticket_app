@@ -6,11 +6,12 @@ class CreateCommentTest < ActionDispatch::IntegrationTest
     @ticket = project.tickets.create!(subject: 'Test Issue', description: 'This is a test.')
   end
 
-  test 'create ticket with valid data' do
-    post "/api/tickets/#{@ticket.id}/comments", {
+  test 'create comment with valid data' do
+    post "/api/comments", {
       comment: {
         ticket_id: @ticket.id,
-        content: 'Something broke.'
+        name: 'Sam',
+        body: 'Something broke.'
       }
     }.to_json,
     {
@@ -27,11 +28,12 @@ class CreateCommentTest < ActionDispatch::IntegrationTest
     assert_equal 'Something broke.', comment[:content]
   end
 
-  test 'does not create ticket with invalid data' do
-    post "/api/tickets/#{@ticket.id}/comments", {
+  test 'does not create comment with invalid data' do
+    post "/api/comments", {
       comment: {
         ticket_id: @ticket.id,
-        content: nil
+        name: 'Sam',
+        body: nil
       }
     }.to_json,
     {

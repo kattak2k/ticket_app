@@ -1,7 +1,18 @@
 class Api::TicketsController < Api::BaseController
   def index
-    tickets = Ticket.where(project_id: params[:project_id])
+    if project_id = params[:project_id]
+      tickets = Ticket.where(project_id: project_id)
+    elsif ids = params[:ids]
+      tickets = Ticket.find(ids)
+    else
+      tickets = Ticket.all
+    end
     respond_with tickets
+  end
+
+  def show
+    ticket = Ticket.find(params[:id])
+    respond_with ticket
   end
 
   def create

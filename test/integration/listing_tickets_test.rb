@@ -7,7 +7,7 @@ class ListingTicketsTest < ActionDispatch::IntegrationTest
   end
 
   test 'listing_tickets' do
-    get "/api/projects/#{@project.id}/tickets"
+    get "/api/tickets?project_id=#{@project.id}"
 
     assert_equal 200, response.status
     assert_equal Mime::JSON, response.content_type

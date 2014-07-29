@@ -4,6 +4,11 @@ class Api::ProjectsController < Api::BaseController
     respond_with projects
   end
 
+  def show
+    project = Project.find(params[:id])
+    respond_with project
+  end
+
   def create
     project = Project.create(project_params)
     respond_with :api, project

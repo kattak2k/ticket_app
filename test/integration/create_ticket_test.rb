@@ -6,7 +6,7 @@ class CreateTicketTest < ActionDispatch::IntegrationTest
   end
 
   test 'create ticket with valid data' do
-    post "/api/projects/#{@project.id}/tickets", {
+    post "/api/tickets", {
       ticket: {
         project_id: @project.id,
         subject: 'Test Issue',
@@ -28,7 +28,7 @@ class CreateTicketTest < ActionDispatch::IntegrationTest
   end
 
   test 'does not create ticket with invalid data' do
-    post "/api/projects/#{@project.id}/tickets", {
+    post "/api/tickets", {
       ticket: {
         project_id: @project.id,
         name: nil,

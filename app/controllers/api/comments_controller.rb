@@ -1,4 +1,21 @@
 class Api::CommentsController < Api::BaseController
+
+  def index
+    if ticket_id = params[:ticket_id]
+      comments = Comment.where(ticket_id: ticket_id)
+    elsif ids = params[:ids]
+      comments = Comment.find(ids)
+    else
+      comments = Comment.all
+    end
+    respond_with comments
+  end
+
+  def show
+    comment = Comment.find(params[:id])
+    respond_with comment
+  end
+
   def create
     comment = Comment.create(comment_params)
     respond_with :api, comment
@@ -16,6 +33,6 @@ class Api::CommentsController < Api::BaseController
   end
 
   def comment_params
-    params.require(:comment).permit(:ticket_id, :content)
+    params.require(:comment).permit(:ticket_id, :name, :body)
   end
 end
