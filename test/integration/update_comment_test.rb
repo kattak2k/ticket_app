@@ -10,7 +10,7 @@ class UpdateCommentTest < ActionDispatch::IntegrationTest
   test 'update comment' do
     put "/api/comments/#{@comment.id}", {
       comment: {
-        content: 'Uh oh.'
+        body: 'Uh oh.'
       }
     }.to_json,
     {
@@ -19,6 +19,6 @@ class UpdateCommentTest < ActionDispatch::IntegrationTest
     }
 
     assert_equal 204, response.status
-    assert_equal 'Uh oh.', Comment.find(@comment.id).content
+    assert_equal 'Uh oh.', Comment.find(@comment.id).body
   end
 end

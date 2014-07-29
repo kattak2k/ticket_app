@@ -25,7 +25,7 @@ class CreateCommentTest < ActionDispatch::IntegrationTest
     comment = json(response.body)[:comment]
     assert_equal api_comment_url(comment[:id]), response.location
     assert_equal @ticket.id, comment[:ticket_id]
-    assert_equal 'Something broke.', comment[:content]
+    assert_equal 'Something broke.', comment[:body]
   end
 
   test 'does not create comment with invalid data' do
