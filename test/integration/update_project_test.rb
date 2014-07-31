@@ -2,13 +2,13 @@ require 'test_helper'
 
 class UpdateProjectTest < ActionDispatch::IntegrationTest
   setup do
-    @project = Project.create!(name: 'Project One')
+    @project = projects(:one)
   end
 
   test 'update project' do
     put "/api/projects/#{@project.id}", {
       project: {
-        name: 'Project 1'
+        name: 'Mission Impossible'
       }
     }.to_json,
     {
@@ -17,6 +17,6 @@ class UpdateProjectTest < ActionDispatch::IntegrationTest
     }
 
     assert_equal 204, response.status
-    assert_equal 'Project 1', Project.find(@project.id).name
+    assert_equal 'Mission Impossible', Project.find(@project.id).name
   end
 end

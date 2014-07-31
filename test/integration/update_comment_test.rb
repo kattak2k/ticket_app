@@ -2,9 +2,7 @@ require 'test_helper'
 
 class UpdateCommentTest < ActionDispatch::IntegrationTest
   setup do
-    project = Project.create!(name: 'Project One')
-    ticket = project.tickets.create!(subject: 'Test Issue', description: 'This is a test.')
-    @comment = ticket.comments.create!(name: 'Sam', body: 'Something broke.')
+    @comment = comments(:one)
   end
 
   test 'update comment' do

@@ -1,13 +1,29 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  subject: MyString
-  description: MyText
-  priority: MyString
-  status: MyString
+  subject: Broken Link
+  description: Broken link to about on home page.
+  priority: low
+  status: open
+  project: one
 
 two:
-  subject: MyString
-  description: MyText
-  priority: MyString
-  status: MyString
+  subject: Typo
+  description: Typo in heading on contact page.
+  priority: medium
+  status: open
+  project: one
+
+three:
+  subject: Wrong Phone Number
+  description: The contact page has the wrong phone number.
+  priority: medium
+  status: open
+  project: two
+
+four:
+  subject: Missing Data
+  description: The stores directory is missing stores.
+  priority: high
+  status: open
+  project: two

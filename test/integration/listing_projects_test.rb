@@ -1,11 +1,6 @@
 require 'test_helper'
 
 class ListingProjectsTest < ActionDispatch::IntegrationTest
-  setup do
-    Project.create!(name: 'Project One')
-    Project.create!(name: 'Project Two')
-  end
-
   test 'listing_projects' do
     get '/api/projects'
 

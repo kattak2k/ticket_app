@@ -2,7 +2,7 @@ require 'test_helper'
 
 class DeleteTicketTest < ActionDispatch::IntegrationTest
   setup do
-    project = Project.create!(name: 'Test Project')
+    project = projects(:one)
     @ticket = project.tickets.create!(subject: 'Test Issue', description: 'This is a test.')
   end
 

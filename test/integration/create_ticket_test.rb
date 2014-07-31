@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CreateTicketTest < ActionDispatch::IntegrationTest
   setup do
-    @project = Project.create!(name: 'Project One')
+    @project = projects(:one)
   end
 
   test 'create ticket with valid data' do
