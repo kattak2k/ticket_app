@@ -24,5 +24,5 @@
 //= require_tree ./controllers
 //= require_tree ./components
 //= require_tree ./helpers
-//= require_tree ./templates/components
 //= require_tree ./templates
+//= require_tree ./templates/components
