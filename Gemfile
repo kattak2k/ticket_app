@@ -46,3 +46,5 @@ gem 'active_model_serializers'
 gem 'handlebars_assets'
 
 gem 'rails_12factor', group: :production
+
+gem 'unicorn'
