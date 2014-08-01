@@ -44,3 +44,5 @@ gem 'simplecov', '~> 0.7.1', :require => false, :group => :test
 gem 'active_model_serializers'
 
 gem 'handlebars_assets'
+
+gem 'rails_12factor', group: :production
