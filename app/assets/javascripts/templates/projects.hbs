@@ -1,0 +1,44 @@
+<ol class='breadcrumb'>
+  <li class='active'>Projects</li>
+</ol>
+
+<legend>Projects</legend>
+<p>
+  <form class="form-inline" role="form">
+    <div class="form-group">
+      {{input type="text" id="new-project" class="form-control" placeholder="Project Name" value=newProject}}
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-primary btn-sm" {{action 'createProject'}}><i class="glyphicon glyphicon-plus-sign"></i> Add Project</button>
+    </div>
+  </form>
+  {{outlet errors}}
+</p>
+
+<div class='row'>
+  <div class='col-sm-12'>
+    <table class='table table-striped'>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th></th>
+      </tr>
+      {{#each}}
+      <tr>
+        <td>{{id}}</td>
+        <td>{{#link-to 'project' this}}{{name}}{{/link-to}}</td>
+        <td>
+          <div class="btn-toolbar pull-right">
+            <div class="btn-group">
+              <button class="btn btn-default btn-sm" {{action "openModal" "modal" model}}><i class="glyphicon glyphicon-edit"></i></button>
+              <button class="btn btn-default btn-sm" {{action "deleteProject"}}><i class="glyphicon glyphicon-trash"></i></button>
+            </div>
+          </div>
+        </td>
+      </tr>
+      {{else}}
+        <tr><td colspan="3">There are no projects.</td></tr>
+      {{/each}}
+    </table>
+  </div>
+</div>

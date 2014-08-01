@@ -1,0 +1,7 @@
+<ol class='breadcrumb'>
+  <li>{{#link-to 'projects'}}Projects{{/link-to}}</li>
+  <li class='active'>{{name}}</li>
+</ol>
+<legend>Tickets </legend>
+<p>{{#link-to 'project.new_ticket' this class='btn btn-primary btn-sm'}}<i class="glyphicon glyphicon-plus-sign"></i> New Ticket{{/link-to}}</p>
+{{render 'tickets' tickets}}

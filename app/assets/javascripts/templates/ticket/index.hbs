@@ -1,0 +1,26 @@
+<ol class='breadcrumb'>
+  <li>{{#link-to 'projects'}}Projects{{/link-to}}</li>
+  <li>{{#link-to 'project' this.project}}{{this.project.name}}{{/link-to}}</li>
+  <li class='active'>{{subject}}</li>
+</ol>
+
+<legend>Ticket #{{id}}: {{subject}}</legend>
+<div class="ticket-heading">
+  <div class="pull-left">
+    <ul class="list-inline">
+      <li><strong>Priority:</strong> {{ticket-priority ticket=this}}</li>
+      <li><strong>Status:</strong> {{ticket-status ticket=this}}</li>
+    </ul>
+  </div>
+  <div class="pull-right">
+    <p>
+      {{#link-to 'ticket.edit' this class='btn btn-default btn-xs'}}<i class="glyphicon glyphicon-edit"></i> Edit{{/link-to}}
+      <button class="btn btn-default btn-xs" {{action "deleteTicket"}}><i class="glyphicon glyphicon-trash"></i> Delete</button>
+    </p>
+  </div>
+</div>
+<p><strong>Description:</strong></p>
+<p>{{description}}</p>
+<legend class="subheading">Comments <span class="badge pull-right">{{comments.length}}</span></legend>
+{{partial 'comment/form'}}
+{{render 'comments' comments}}

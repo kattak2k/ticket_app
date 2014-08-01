@@ -38,9 +38,8 @@ gem 'spring',        group: :development
 # Use debugger
 gem 'debugger', group: [:development, :test]
 
-gem 'spring', group: :development
-
 gem 'simplecov', '~> 0.7.1', :require => false, :group => :test
 
 gem 'active_model_serializers'
 
+gem 'handlebars_assets'

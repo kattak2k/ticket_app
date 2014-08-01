@@ -16,4 +16,13 @@
 //= require ember
 //= require ember-data
 //= require moment
-//= require_tree .
+//= require app
+//= require router
+//= require store
+//= require_tree ./models
+//= require_tree ./routes
+//= require_tree ./controllers
+//= require_tree ./components
+//= require_tree ./helpers
+//= require_tree ./templates/components
+//= require_tree ./templates

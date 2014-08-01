@@ -1,0 +1,24 @@
+{{#modal-dialog action="close"}}
+  <header>
+    <h4>Edit Project</h4>
+  </header>
+  <section>
+    <div class="form-inline">
+      <div class="form-group">
+        <label for="project-name">Name</label>
+        {{input id="project-name" class="form-control" required="true" placeholder="Name" value=buffer.name action="save"}}
+      </div>
+    </div>
+  </section>
+  <footer>
+    <div class="pull-left">
+      {{#each error in errors.name}}
+        <p class="text-danger">Name {{error.message}}</p>
+      {{/each}}
+    </div>
+    <div class="pull-right">
+      <button class="btn btn-primary" {{action "save"}}>Save</button>
+      <button class="btn btn-default" {{action "close"}}>Cancel</button>
+    </div>
+  </footer>
+{{/modal-dialog}}

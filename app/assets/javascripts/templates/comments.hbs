@@ -1,0 +1,20 @@
+<div class="comments">
+  {{#each}}
+    <div class="comment">
+      <blockquote>
+        <div class="comment-heading">
+          <span class="text-muted"><sup>{{datetime create_at}}</sup></span>
+          <div class="pull-right">
+            <button class="btn btn-default btn-xs" {{action "deleteComment"}}><i class="glyphicon glyphicon-trash"></i></button>
+          </div>
+        </div>
+        {{body}}
+        <footer>
+          {{name}}
+        </footer>
+      </blockquote>
+    </div>
+  {{else}}
+    <p>There are no comments.</p>
+  {{/each}}
+</div>
