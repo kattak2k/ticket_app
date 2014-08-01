@@ -1,0 +1,1 @@
+window.Ember.TEMPLATES["application"] = Ember.Handlebars.compile("<div class=\"container\">\n  <h1>TicketApp</h1>\n    {{outlet}}\n    {{outlet modal}}\n  <hr/>\n</div>");
