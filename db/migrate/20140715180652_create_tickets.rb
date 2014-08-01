@@ -4,8 +4,8 @@ class CreateTickets < ActiveRecord::Migration
       t.integer :project_id
       t.string :subject
       t.text :description
-      t.string :priority, null: false, default: 'low'
-      t.string :status, null: false, default: 'open'
+      t.integer :priority, null: false, default: 0
+      t.integer :status, null: false, default: 0
 
       t.timestamps
     end
