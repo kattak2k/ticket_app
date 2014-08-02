@@ -19,6 +19,8 @@
 .comment { border-top: 1px solid #eee; }
 
 legend.subheading { font-size: 16px; }
+a.gray-icon, a.gray-icon:hover { color: #777; }
+a.gray-icon:hover { color: #333; }
 
 .label-low { background-color: #5bc0de; }
 .label-medium { background-color: #f0ad4e; }

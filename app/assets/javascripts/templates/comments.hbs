@@ -5,7 +5,7 @@
         <div class="comment-heading">
           <span class="text-muted"><sup>{{datetime create_at}}</sup></span>
           <div class="pull-right">
-            <button class="btn btn-default btn-xs" {{action "deleteComment"}}><i class="glyphicon glyphicon-trash"></i></button>
+            <a {{action "deleteComment"}} class="gray-icon"><i class="glyphicon glyphicon-remove-circle"></i></a>
           </div>
         </div>
         {{body}}
