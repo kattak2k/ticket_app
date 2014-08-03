@@ -1,29 +1,31 @@
-<table class='table table-striped'>
-  <tr>
-    <th>#</th>
-    <th>Subject</th>
-    <th>Priority</th>
-    <th>Status</th>
-    <th>Created</th>
-    <th></th>
-  </tr>
-  {{#each}}
+<div class="table-responsive">
+  <table class='table table-striped'>
     <tr>
-      <td>{{id}}</td>
-      <td>{{#link-to 'ticket' this}}{{subject}}{{/link-to}}</td>
-      <td>{{ticket-priority ticket=this}}</td>
-      <td>{{ticket-status ticket=this}}</td>
-      <td>{{datetime created_at}}</td>
-      <td>
-        <div class="btn-toolbar pull-right">
-          <div class="btn-group">
-            {{#link-to 'ticket.edit' this class='btn btn-default btn-sm'}} <i class="glyphicon glyphicon-edit"></i>{{/link-to}}
-            <button class="btn btn-default btn-sm" {{action "deleteTicket"}}><i class="glyphicon glyphicon-trash"></i></button>
-          </div>
-        </div>
-      </td>
+      <th>#</th>
+      <th>Subject</th>
+      <th>Priority</th>
+      <th>Status</th>
+      <th class="hidden-xs">Created</th>
+      <th></th>
     </tr>
-  {{else}}
-    <tr><td colspan="5">There are no tickets.</td></tr>
-  {{/each}}
-</table>
+    {{#each}}
+      <tr>
+        <td>{{id}}</td>
+        <td>{{#link-to 'ticket' this}}{{subject}}{{/link-to}}</td>
+        <td>{{ticket-priority ticket=this}}</td>
+        <td>{{ticket-status ticket=this}}</td>
+        <td class="hidden-xs">{{datetime created_at}}</td>
+        <td>
+          <div class="btn-toolbar pull-right">
+            <div class="btn-group">
+              {{#link-to 'ticket.edit' this class='btn btn-default btn-sm'}} <i class="glyphicon glyphicon-edit"></i>{{/link-to}}
+              <button class="btn btn-default btn-sm" {{action "deleteTicket"}}><i class="glyphicon glyphicon-trash"></i></button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    {{else}}
+      <tr><td colspan="5">There are no tickets.</td></tr>
+    {{/each}}
+  </table>
+</div>
