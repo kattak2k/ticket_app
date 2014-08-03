@@ -1,25 +1,29 @@
-<div class="well">
-  <form role="form">
-    <div class="form-group">
-      <label for="comment_name">Your Name</label>
-      {{input class="form-control" id="comment_name" placeholder="Name" valueBinding="comment.name"}}
-      {{#each comment.errors.name}}
-        <div class="text-danger">
-          {{message}}
+<div class='row'>
+  <div class='col-sm-12'>
+    <div class="well">
+      <form role="form">
+        <div class="form-group">
+          <label for="comment_name">Your Name</label>
+          {{input class="form-control" id="comment_name" placeholder="Name" valueBinding="comment.name"}}
+          {{#each comment.errors.name}}
+            <div class="text-danger">
+              {{message}}
+            </div>
+          {{/each}}
         </div>
-      {{/each}}
-    </div>
-    <div class="form-group">
-      <label for="comment_content">Comment</label>
-      {{textarea valueBinding="comment.body" class="form-control" id="comment_content" placeholder="Comment"}}
-      {{#each comment.errors.body}}
-        <div class="text-danger">
-          {{message}}
+        <div class="form-group">
+          <label for="comment_content">Comment</label>
+          {{textarea valueBinding="comment.body" class="form-control" id="comment_content" placeholder="Comment"}}
+          {{#each comment.errors.body}}
+            <div class="text-danger">
+              {{message}}
+            </div>
+          {{/each}}
         </div>
-      {{/each}}
+        <div>
+          <button type="submit" class="btn btn-default btn-sm" {{action 'saveComment'}}>Submit</button>
+        </div>
+      </form>
     </div>
-    <div>
-      <button type="submit" class="btn btn-default btn-sm" {{action 'saveComment'}}>Submit</button>
-    </div>
-  </form>
+  </div>
 </div>
