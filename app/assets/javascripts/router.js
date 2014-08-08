@@ -9,4 +9,5 @@ App.Router.map(function() {
   this.resource('comments', function() {
     this.route('new');
   });
+  this.route('not_found', { path: '/404-not-found' });
 });

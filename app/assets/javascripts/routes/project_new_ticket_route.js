@@ -7,7 +7,7 @@ App.ProjectNewTicketRoute = Ember.Route.extend({
   actions: {
     willTransition: function(transition) {
       if(this.currentModel.get('isNew')) {
-        this.currentModel.destroyRecord();
+        this.currentModel.deleteRecord();
       }
     }
   }
