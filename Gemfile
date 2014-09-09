@@ -47,4 +47,6 @@ gem 'handlebars_assets'
 
 gem 'rails_12factor', group: :production
 
+gem 'heroku_rails_deflate', group: :production
+
 gem 'unicorn'
