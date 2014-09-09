@@ -1,0 +1,1 @@
+window.Ember.TEMPLATES.application=Ember.Handlebars.compile('<div id="wrap">\n  <div class="container">\n    <h1>TicketApp</h1>\n      {{outlet}}\n      {{outlet modal}}\n  </div>\n</div>\n<footer id="footer">\n  <div class="container">\n    <p class="text-muted credit">Copyright \xa9 {{currentYear}} TicketApp.</p>\n  </div>\n</footer>');

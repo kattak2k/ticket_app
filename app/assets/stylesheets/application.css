@@ -15,6 +15,23 @@
  *= require bootstrap
  */
 
+html,
+body {
+  height: 100%;
+}
+
+.application {
+  height: 100%;
+}
+
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
+}
+
 .ticket-heading { float: left; width: 100%; }
 .comment { float: left; width: 100%; border-top: 1px solid #eee; }
 .remove-comment { float: right; padding: 8px 0; }
@@ -79,4 +96,18 @@ a.gray-icon:hover { color: #333; }
   top: 0;
   left: 0;
   background-color: rgba(0, 0, 0, 0.2);
+}
+
+#footer {
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.container .credit {
+  margin: 20px 0;
+}
+
+#footer > .container {
+  padding-left: 15px;
+  padding-right: 15px;
 }
