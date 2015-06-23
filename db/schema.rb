@@ -31,8 +31,8 @@ ActiveRecord::Schema.define(version: 20140729213221) do
     t.integer  "project_id"
     t.string   "subject"
     t.text     "description"
-    t.integer  "priority",    limit: 255, default: 0, null: false
-    t.integer  "status",      limit: 255, default: 0, null: false
+    t.integer  "priority",    limit: 2, default: 0, null: false
+    t.integer  "status",      limit: 2, default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

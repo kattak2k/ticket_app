@@ -1,6 +1,6 @@
 App.ProjectsRoute = Ember.Route.extend({
   model: function() {
-    return this.store.findAll('project');
+    return this.store.find('project');
   },
   actions: {
     displayErrors: function() {

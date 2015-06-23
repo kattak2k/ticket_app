@@ -15,6 +15,7 @@
 //= require handlebars
 //= require ember
 //= require ember-data
+//= require ember-template-compiler
 //= require moment
 //= require app
 //= require router
