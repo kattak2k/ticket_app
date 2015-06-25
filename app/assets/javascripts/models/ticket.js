@@ -16,7 +16,7 @@ App.Ticket = DS.Model.extend({
   priority: DS.attr(),
   status: DS.attr(),
   created_at: DS.attr('date'),
-  project: DS.belongsTo('project'),
+  project: DS.belongsTo('project', { async: true }),
   comments: DS.hasMany('comment', { async: true }),
 
   priorityDescription: function() {

@@ -4,7 +4,7 @@ App.TicketIndexRoute = Ember.Route.extend({
     var ticket = this.modelFor('ticket');
     return Ember.RSVP.hash({
       ticket: ticket,
-      comment: this.store.createRecord('comment', { ticket: ticket })
+      comment: this.store.createRecord('comment')
     });
   },
   setupController: function(controller, model) {

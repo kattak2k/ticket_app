@@ -43,10 +43,11 @@ App.TicketController = Ember.ObjectController.extend({
       var controller = this;
       var ticket = this.get('ticket');
       var comment = this.get('comment');
+      comment.set('ticket', ticket);
       comment.save().then(function() {
         ticket.get('comments').then(function(comments) {
           comments.pushObject(comment);
-          controller.set('comment', controller.store.createRecord('comment', { ticket: ticket }));
+          controller.set('comment', controller.store.createRecord('comment'));
         });
       }, function(errors) {
       });
